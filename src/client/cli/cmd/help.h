@@ -13,12 +13,10 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Authored by: Alberto Aguirre <alberto.aguirre@canonical.com>
- *
  */
 
-#ifndef MULTIPASS_RECOVER_H
-#define MULTIPASS_RECOVER_H
+#ifndef MULTIPASS_HELP_H
+#define MULTIPASS_HELP_H
 
 #include <multipass/cli/command.h>
 
@@ -26,21 +24,21 @@ namespace multipass
 {
 namespace cmd
 {
-class Recover final : public Command
+class Help final : public Command
 {
 public:
     using Command::Command;
-    ReturnCode run(ArgParser *parser) override;
+    ReturnCode run(ArgParser* parser) override;
 
     std::string name() const override;
     QString short_help() const override;
     QString description() const override;
 
 private:
-    RecoverRequest request;
+    QString command;
 
-    ParseCode parse_args(ArgParser *parser) override;
+    ParseCode parse_args(ArgParser* parser) override;
 };
-}
-}
-#endif // MULTIPASS_RECOVER_H
+} // namespace cmd
+} // namespace multipass
+#endif // MULTIPASS_HELP_H

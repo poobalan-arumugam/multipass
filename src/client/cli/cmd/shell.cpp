@@ -65,7 +65,10 @@ mp::ReturnCode cmd::Shell::run(mp::ArgParser* parser)
     return dispatch(&RpcMethod::ssh_info, request, on_success, on_failure);
 }
 
-std::string cmd::Shell::name() const { return "shell"; }
+std::string cmd::Shell::name() const
+{
+    return "shell";
+}
 
 std::vector<std::string> cmd::Shell::aliases() const
 {
