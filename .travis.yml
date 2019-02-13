@@ -45,7 +45,10 @@ after_failure:
 after_success:
 - ccache --show-stats
 
-cache: ccache
+cache:
+  ccache: true
+  directories:
+  - ${HOME}/.cache/snapcraft/stage-packages
 
 jobs:
   include:
