@@ -37,9 +37,13 @@ before_script:
 - "[ ! -f tests/travis.patch ] || patch -p1 < tests/travis.patch"
 - "[ ! -f tests/travis-${BUILD_TYPE}.patch ] || patch -p1 < tests/travis-${BUILD_TYPE}.patch"
 - sg lxd -c 'env PATH=/snap/bin:$PATH SNAPCRAFT_BUILD_ENVIRONMENT=lxd /snap/bin/snapcraft refresh'
+- ccache --zero-stats
 
 after_failure:
 - cat /tmp/*/trace.txt
+
+after_success:
+- ccache --show-stats
 
 cache: ccache
 
@@ -90,5 +94,6 @@ jobs:
           REF="${TRAVIS_COMMIT}"
         fi
         ssh -q -p ${MAC_PORT} ${MAC_USERHOST} multipass-build/build-in-snapshot.sh "${REF}"
+      after_success: ~
       after_failure: ~
       cache: ~
