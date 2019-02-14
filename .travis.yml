@@ -45,6 +45,9 @@ after_failure:
 after_success:
 - ccache --show-stats
 
+after_script:
+- du -hcs ${HOME}/.cache/snapcraft/stage-packages
+
 cache:
   ccache: true
   directories:
